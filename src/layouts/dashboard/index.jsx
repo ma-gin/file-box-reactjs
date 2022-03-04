@@ -1,8 +1,8 @@
-import NavBar from "components/navbar";
-import React, { Component } from "react";
-import { ListGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import "./layout.css";
+import NavBar from "components/navbar"
+import React, { Component } from "react"
+import { ListGroup } from "react-bootstrap"
+import { Link } from "react-router-dom"
+import "./layout.css"
 
 export default class DashboardLayout extends Component {
   render() {
@@ -17,9 +17,8 @@ export default class DashboardLayout extends Component {
                   width="24"
                   height="24"
                   fill="currentColor"
-                  class="bi bi-archive"
-                  viewBox="0 0 16 16"
-                >
+                  className="bi bi-archive"
+                  viewBox="0 0 16 16">
                   <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
                 </svg>
                 StriveBox
@@ -28,33 +27,27 @@ export default class DashboardLayout extends Component {
 
             <ListGroup variant="flush">
               <ListGroup.Item
-                style={{ background: "transparent", border: "none" }}
-              >
+                style={{ background: "transparent", border: "none" }}>
                 <Link
                   to="/"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
+                  style={{ textDecoration: "none", color: "inherit" }}>
                   <h4>Home</h4>
                 </Link>
               </ListGroup.Item>
 
               <ListGroup.Item
-                style={{ background: "transparent", border: "none" }}
-              >
+                style={{ background: "transparent", border: "none" }}>
                 <Link
                   to="/recents"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
+                  style={{ textDecoration: "none", color: "inherit" }}>
                   <h4>Recents</h4>
                 </Link>
               </ListGroup.Item>
               <ListGroup.Item
-                style={{ background: "transparent", border: "none" }}
-              >
+                style={{ background: "transparent", border: "none" }}>
                 <Link
                   to="/starred"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
+                  style={{ textDecoration: "none", color: "inherit" }}>
                   <h4>Starred</h4>
                 </Link>
               </ListGroup.Item>
@@ -66,6 +59,6 @@ export default class DashboardLayout extends Component {
           </div>
         </div>
       </>
-    );
+    )
   }
 }

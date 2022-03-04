@@ -1,60 +1,61 @@
-import backend from "client/http";
-import React, { Component } from "react";
-import { Table, Button } from "react-bootstrap";
-import { createRef } from "react";
-import "./all.css";
+import backend from "client/http"
+import React, { Component } from "react"
+import { Table, Button } from "react-bootstrap"
+import { createRef } from "react"
+import "./all.css"
 export default class All extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       loading: true,
       files: [],
       file: null,
-    };
-    this.ref = createRef();
+    }
+    this.ref = createRef()
   }
   componentDidMount() {
-    this.fetchFiles();
+    this.fetchFiles()
   }
   fetchFiles = async () => {
-    const { data } = await backend.get("/files");
-    this.setState({ files: data, loading: false });
-  };
+    const { data } = await backend.get("/files")
+    this.setState({ files: data, loading: false })
+  }
   handleFileClick = () => {
-    this.ref.current.click();
-  };
+    this.ref.current.click()
+  }
   handleFileChange = async (e) => {
-    const [file, ...rest] = e.target.files;
-    const formData = new FormData();
-    formData.append("cover", file);
+    console.log(e.target.files)
+    const [file, ...rest] = e.target.files
+    const formData = new FormData()
+    formData.append("cover", file)
     try {
-      await backend.post("/files", formData);
-      this.fetchFiles();
+      await backend.post("/files", formData)
+      this.fetchFiles()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   handleFileDelete = async (id) => {
     try {
-      await backend.delete(`/files/${id}`);
-      this.fetchFiles();
+      await backend.delete(`/files/${id}`)
+      this.fetchFiles()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   changeTitle = (e) => {
-    this.setState({ title: e.target.value });
-  };
+    this.setState({ title: e.target.value })
+  }
   renameFile = async (id) => {
     try {
-      await backend.put(`/files/${id}`, { title: this.state.title });
-      this.fetchFiles();
+      await backend.put(`/files/${id}`, { title: this.state.title })
+      this.fetchFiles()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   render() {
-    const { files, loading } = this.state;
+    const { files, loading } = this.state
     return (
       <div>
         <input
@@ -67,8 +68,7 @@ export default class All extends Component {
           <Button
             onClick={this.handleFileClick}
             variant="dark"
-            className="mb-5"
-          >
+            className="mb-5">
             Upload
           </Button>
         </div>
@@ -96,7 +96,7 @@ export default class All extends Component {
                         defaultValue={file.title}
                         onKeyDown={(e) => {
                           if (e.key === "Enter") {
-                            this.renameFile(file.id);
+                            this.renameFile(file.id)
                           }
                         }}
                       />
@@ -110,15 +110,13 @@ export default class All extends Component {
                         as="a"
                         href={file.downloadUrl}
                         className="ml-2"
-                        variant="success"
-                      >
+                        variant="success">
                         Download
                       </Button>
                       <Button
                         onClick={() => this.handleFileDelete(file.id)}
                         className="ml-2"
-                        variant="danger"
-                      >
+                        variant="danger">
                         Delete
                       </Button>
                     </td>
@@ -129,6 +127,6 @@ export default class All extends Component {
           </>
         )}
       </div>
-    );
+    )
   }
 }
